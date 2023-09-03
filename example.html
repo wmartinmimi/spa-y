@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <!-- imports recommended -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="/spay.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- html to append in -->
+    <div id="example"></div>
+
+    <!-- template to use -->
+    <!-- uses string templating syntax -->
+    <!-- avoid/escape backticks (`) -->
+    <template id="template">
+      <h2>${header}</h2>
+      <p>${body}</p>
+    </template>
+
+    <!-- usage -->
+    <script>
+      // spay.get( url, destination, template )
+      // IMPORTANT: JSON ENDPOINT SHOULD HAVE SANITIZED OUTPUT
+      spay.get("/example.json", "#example", "#template");
+
+      /* example.json
+      {
+        "header": "Hello dev",
+        "body": "Welcome to SPA-Y"
+      }
+      */
+    
+      /* outputs
+        <h2>Hello dev</h2>
+        <p>Welcome to SPA-Y</p>
+      */
+    </script>
+
+  </body>
+
+</html>

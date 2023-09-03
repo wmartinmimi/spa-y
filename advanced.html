@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <!-- imports recommended -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="/spay.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- html to append in -->
+    <div id="example1"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <div id="example4"></div>
+
+
+    <!-- template to use -->
+    <!-- uses string templating syntax -->
+    <!-- avoid/escape backticks (`) -->
+    <template id="map">
+      <h2>${header}</h2>
+      <p>${body}</p>
+    </template>
+
+
+    <!-- example -->
+    <script>
+      // multiple different ways to use
+
+      // IMPORTANT: JSON ENDPOINT SHOULD HAVE SANITIZED OUTPUT
+
+      // example 1
+      // spay.get( url, destination, template )
+      spay.get("/example.json", "#example1", "#template");
+
+      // example 2
+      spay.get("/example.json", $("#example2"), $("#template"));
+
+      // example 3
+      let div = $("<div></div>");
+
+      spay.get("/example.json", div, "<template><h2>${header}</h2></template>");
+
+      $("#example3").append(div);
+
+      // example 4
+      // spay.ajax( method, url, destination, template )
+      spay.ajax("GET", "/example.json", "#example4", "#template");
+
+    </script>
+
+
+  </body>
+
+</html>
